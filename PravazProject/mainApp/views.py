@@ -5,9 +5,6 @@ from .forms import FormularioRegistro
 
 
 
-
-
-
 def inicio(request):
 
     
@@ -59,7 +56,7 @@ def registro_pagina(request):
             'title': 'Registro',
             'formulario_registro': formulario_registro
         }
-        return render(request, 'users/register.html', context)
+        return render(request, 'usuario/registro.html', context)
 
     return render(request, 'registro.html')
 
