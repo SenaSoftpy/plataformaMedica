@@ -1,0 +1,2 @@
+# plataformaMedica
+Repositorio grupal
