@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 # Importamos nuestro modelo de formulario
 from .forms import FormularioRegistro
+#  son necesarios para el inicio de sesion
+from django.contrib.auth import authenticate, login, logout 
+
 
 
 
