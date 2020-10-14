@@ -1,6 +1,6 @@
 body{
-    background: url('../img/medico.jpg') no-repeat center center fixed;
-    background-size: cover;
+    background-color: #D4E6F1! important;
+    font-family: 'Playfair Display', serif;
 }
 
 .main-section{
