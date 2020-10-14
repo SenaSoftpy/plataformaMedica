@@ -26,7 +26,7 @@ class Roles(models.Model):
 class Medico(models.Model):  
 
 #  id_medico = models.IntegerField(primary_key=True)  #PK sin autoincremento
-  contraseña = models.CharField(max_length = 100)
+  contrasena = models.CharField(max_length = 100)
   nombre = models.CharField(max_length= 100)
   apellidos = models.CharField(max_length = 100)
   telefono = models.CharField(max_length = 100)
@@ -43,16 +43,11 @@ class Autorizaciones(models.Model):
   tipo_autorizacion = models.CharField(max_length = 100)
   FK_medico = models.ForeignKey(Medico, editable=False, on_delete=models.CASCADE)
 
-class Diagnostico(models.Model):
-#  id_diagnostico = models.IntegerField(primary_key=True)
-  sintomas = models.CharField(max_length = 500)
-  resultado_diagnos = models.CharField(max_length = 500)
-  fecha = models.DateField
-  FK_paciente = models.ForeignKey(Paciente, editable=False, on_delete=models.CASCADE)
+
 
 class Paciente(models.Model):
   # id_paciente = models.IntegerField(primary_key=True)
-  contraseña = models.CharField(max_length = 100)
+  contrasena = models.CharField(max_length = 100)
   nombre = models.CharField(max_length = 100)
   apellidos = models.CharField(max_length = 100)
   telefono = models.CharField(max_length = 100)
@@ -66,6 +61,13 @@ class Paciente(models.Model):
   FK_roles = models.ForeignKey(Roles, editable=False, on_delete=models.CASCADE) 
   FK_autorizacion = models.ForeignKey(Autorizaciones, editable=False, on_delete=models.CASCADE)
 
+class Diagnostico(models.Model):
+#  id_diagnostico = models.IntegerField(primary_key=True)
+  sintomas = models.CharField(max_length = 500)
+  resultado_diagnos = models.CharField(max_length = 500)
+  fecha = models.DateField
+  FK_paciente = models.ForeignKey(Paciente, editable=False, on_delete=models.CASCADE)
+  
 class Solicitud_cambioMedico(models.Model):
 #    id_solicMed = models.AutoField(primary_key=True)
   motivo = models.TextField()
