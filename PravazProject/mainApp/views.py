@@ -12,7 +12,9 @@ def inicio(request):
 
     
   
-    return render(request, 'index.html')
+    return render(request, 'index.html', {
+        'titulo': 'Hola'
+    })
 
 def login_pagina(request):
     # Verificamos si esta autenticado, en caso contrario mostramos el formulario de registro
