@@ -4,7 +4,7 @@ from  django.contrib.auth.models import User
 
 class Medico(models.Model):  
 
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)  #PK sin autoincremento
     contraseña = = models.charField(max_length = 100)
     nombre = models.CharField(max_length= 100)
     apellidos = models.charField(max_length = 100)
@@ -20,7 +20,7 @@ class Medico(models.Model):
 
 
 class Paciente(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     contraseña = models.charField(max_length = 100)
     nombre = models.charField(max_length = 100)
     apellidos = models.charField(max_length = 100)
@@ -38,7 +38,7 @@ class Paciente(models.Model):
 
 
 class HistoriaClinica(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     date_aperturaHist = models.TimeField()
     FK_paciente = models.ForeignKey(Paciente, editable=False, on_delete=models.CASCADE)
     FK_diagnostico = models.ForeignKey(Diagnostico, editable=False, on_delete=models.CASCADE)
@@ -46,17 +46,24 @@ class HistoriaClinica(models.Model):
     FK_medico = models.ForeignKey(Medico, editable=False, on_delete=models.CASCADE)
 
 class Diagnostico(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     sintomas = models.charField(max_length = 500)
     resultado_diagnos = models.charField(max_length = 500)
     fecha = models.DateField
+    FK_paciente = models.ForeignKey(Paciente, editable=False, on_delete=models.CASCADE)
     
 
 class Interaccion(models.Model):
     id = models.AutoField(primary_key=True)
+    descripcion_mensaje = models.charField(max_length = 500)
+    fecha = models.DateField()
+    FK_paciente = models.ForeignKey(Paciente, editable=False, on_delete=models.CASCADE)
+    FK_medico = models.ForeignKey(Medico, editable=False, on_delete=models.CASCADE)
 
 class Solicitud_grupoFam(models.Model):
     id = models.AutoField(primary_key=True)
+    id_grupo = models.AutoField()
+    
 
 class Solicitud_cambioMedico(models.Model):
     id = models.AutoField(primary_key=True)
