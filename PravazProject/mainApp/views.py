@@ -30,7 +30,7 @@ def login_pagina(request):
                 #mensajes flash
                 messages.warning(request, 'Credenciales incorrectas')
 
-        return render(request, 'users/login.html')
+        return render(request, 'usuarios/login.html')
 
 # Registro del Usuario
 def registro_pagina(request):
