@@ -26,5 +26,14 @@ class Interaccion(models.Model):
 class Solicitud_grupoFam(models.Model):
     id = models.AutoField(primary_key=True)
 
-class Paciente(models.Model):
+class Solicitud_cambioMedico(models.Model):
+    id = models.AutoField(primary_key=True)
+
+class Ordenes(models.Model):
+    id = models.AutoField(primary_key=True)
+
+class Autorizaciones(models.Model):
+    id = models.AutoField(primary_key=True)
+
+class Roles(models.Model):
     id = models.AutoField(primary_key=True)
