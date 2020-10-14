@@ -35,13 +35,13 @@ class Medico(models.Model):
   especialidad = models.CharField(max_length = 100)
   rol = models.IntegerField()   #según tabla Roles
   FK_especialidad =  models.ForeignKey(Especialidad, null = True, editable=False, on_delete=models.CASCADE) 
-  FK_orden = models.ForeignKey(Ordenes, editable=False, on_delete=models.CASCADE) 
-  FK_roles = models.ForeignKey(Roles, editable=False, on_delete=models.CASCADE) 
+  FK_orden = models.ForeignKey(Ordenes, null = True, editable=False, on_delete=models.CASCADE) 
+  FK_roles = models.ForeignKey(Roles, null = True, editable=False, on_delete=models.CASCADE) 
 
 class Autorizaciones(models.Model):
 #   id_autorizacion = models.AutoField(primary_key=True)
   tipo_autorizacion = models.CharField(max_length = 100)
-  FK_medico = models.ForeignKey(Medico, editable=False, on_delete=models.CASCADE)
+  FK_medico = models.ForeignKey(Medico, null = True, editable=False, on_delete=models.CASCADE)
 
 
 
@@ -56,39 +56,39 @@ class Paciente(models.Model):
   dias_incapacidad = models.CharField(max_length = 100)
   resultados_examenes = models.TextField()
   rol = models.IntegerField()      #según tabla Roles
-  FK_medico = models.ForeignKey(Medico, editable=False, on_delete=models.CASCADE) 
-  FK_grupoFamiliar = models.ForeignKey(Solicitud_grupoFam, editable=False, on_delete=models.CASCADE) 
-  FK_roles = models.ForeignKey(Roles, editable=False, on_delete=models.CASCADE) 
-  FK_autorizacion = models.ForeignKey(Autorizaciones, editable=False, on_delete=models.CASCADE)
+  FK_medico = models.ForeignKey(Medico, null = True, editable=False, on_delete=models.CASCADE) 
+  FK_grupoFamiliar = models.ForeignKey(Solicitud_grupoFam, null = True, editable=False, on_delete=models.CASCADE) 
+  FK_roles = models.ForeignKey(Roles, editable=False, null = True, on_delete=models.CASCADE) 
+  FK_autorizacion = models.ForeignKey(Autorizaciones, null = True, editable=False, on_delete=models.CASCADE)
 
 class Diagnostico(models.Model):
 #  id_diagnostico = models.IntegerField(primary_key=True)
   sintomas = models.CharField(max_length = 500)
   resultado_diagnos = models.CharField(max_length = 500)
   fecha = models.DateField
-  FK_paciente = models.ForeignKey(Paciente, editable=False, on_delete=models.CASCADE)
+  FK_paciente = models.ForeignKey(Paciente, editable=False, null = True, on_delete=models.CASCADE)
   
 class Solicitud_cambioMedico(models.Model):
 #    id_solicMed = models.AutoField(primary_key=True)
   motivo = models.TextField()
   medico_actual = models.IntegerField()
-  FK_paciente = models.ForeignKey(Paciente, editable=False, on_delete=models.CASCADE)
+  FK_paciente = models.ForeignKey(Paciente, editable=False, null = True, on_delete=models.CASCADE)
 
 class HistoriaClinica(models.Model):
 #  id_historia = models.IntegerField(primary_key=True)
   date_aperturaHist = models.TimeField()
-  FK_paciente = models.ForeignKey(Paciente, editable=False, on_delete=models.CASCADE)
-  FK_diagnostico = models.ForeignKey(Diagnostico, editable=False, on_delete=models.CASCADE)
-  FK_ordenes = models.ForeignKey(Ordenes, editable=False, on_delete=models.CASCADE)
-  FK_medico = models.ForeignKey(Medico, editable=False, on_delete=models.CASCADE)
+  FK_paciente = models.ForeignKey(Paciente, null = True, editable=False, on_delete=models.CASCADE)
+  FK_diagnostico = models.ForeignKey(Diagnostico, null = True, editable=False, on_delete=models.CASCADE)
+  FK_ordenes = models.ForeignKey(Ordenes, null = True, editable=False, on_delete=models.CASCADE)
+  FK_medico = models.ForeignKey(Medico, null = True, editable=False, on_delete=models.CASCADE)
     
 
 class Interaccion(models.Model):
 #   id_interaccion = models.AutoField(primary_key=True)
   descripcion_mensaje = models.CharField(max_length = 500)
   fecha = models.DateField()
-  FK_paciente = models.ForeignKey(Paciente, editable=False, on_delete=models.CASCADE)
-  FK_medico = models.ForeignKey(Medico, editable=False, on_delete=models.CASCADE)
+  FK_paciente = models.ForeignKey(Paciente, null = True, editable=False, on_delete=models.CASCADE)
+  FK_medico = models.ForeignKey(Medico, null = True, editable=False, on_delete=models.CASCADE)
 
 
 
