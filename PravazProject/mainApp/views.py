@@ -19,7 +19,7 @@ def inicio(request):
 def login_pagina(request):
     # Verificamos si esta autenticado, en caso contrario mostramos el formulario de registro
     if request.user.is_authenticated: 
-        return ('index')
+        return ('login')
     else:
         if request.method == 'POST':
             usuario = request.POST.get('usuario') # recogemos el dato que nos llega en el name de los campos del formulario
@@ -30,7 +30,7 @@ def login_pagina(request):
             if usuario is not None:
                 # Le pasamos el usuario a identificar
                 login(request, user) 
-                return redirect('index')
+                return redirect('login')
             else:
                 #mensajes flash
                 messages.warning(request, 'Credenciales incorrectas')
@@ -52,7 +52,7 @@ def registro_pagina(request):
             formulario_registro = FormularioRegistro(request.POST) 
 
             if formulario_registro.is_valid():
-                formulario_registro.save()
+                formulario_registro.save() # Guardamos en la base de datos
                 messages.success(request, 'Te has registrado Correctamente')
 
                 return redirect('index')
@@ -62,8 +62,6 @@ def registro_pagina(request):
             'formulario_registro': formulario_registro
         }
         return render(request, 'usuario/registro.html', context)
-
-    return render(request, 'registro.html')
 
 # Cerramos Sesión
 def cerrar_sesion(request):
